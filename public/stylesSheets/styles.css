@@ -1,11 +1,6 @@
 html{
     scroll-behavior: smooth;
 }
-#navigation{
-  position: absolute;
-  left: 0;
-  top: 0;
-}
 .hero::before {
     content: '';
     position: absolute;
