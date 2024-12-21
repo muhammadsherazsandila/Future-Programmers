@@ -6,6 +6,7 @@ const ejs = require('ejs')
 const app = express();
 const session = require('express-session');
 const flash = require('connect-flash');
+const path = require('path')
 require('./config/mongooseConfiguration');
 require('dotenv').config();
 
