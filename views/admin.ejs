@@ -7,6 +7,7 @@
   <title>Admin Panel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../stylesSheets/styles.css">
+  <link rel="stylesheet" href="../stylesSheets/loginStyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
   <style>
     .highlight-area {
@@ -57,20 +58,38 @@
     </div>
     <% } %>
   <!-- Header -->
-  <header class="bg-[#042940] text-white shadow fixed top-0 left-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center py-4">
-        <a href="#" class="text-2xl font-bold">Future Programmers</a>
-        <nav class="space-x-4">
-          <a href="/" class="hover:text-[#38AFFF]" aria-label="Home">Home</a>
-          <a href="/logout" class="hover:text-[#38AFFF]" aria-label="Logout">Logout</a>
-        </nav>
+    <header class="bg-[#042940] text-white shadow fixed w-full z-10 navigation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center py-4">
+              <!-- Logo -->
+              <a href="#" class="text-2xl font-bold">Future Programmers</a>
+
+              <!-- Mobile Menu Button -->
+              <button id="mobileMenuButton" class="sm:hidden text-white focus:outline-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h16m-7 6h7" />
+                  </svg>
+              </button>
+
+              <!-- Navigation Links -->
+              <nav id="menu" class="hidden sm:flex space-x-4">
+                  <a href="/" class="hover:text-[#38AFFF]">Home</a>
+                  <a href="/logout" class="hover:text-[#38AFFF]">Logout</a>
+              </nav>
+          </div>
+
+          <!-- Mobile Dropdown Menu -->
+          <div id="mobileMenu" class="hidden sm:hidden flex flex-col space-y-2 py-4">
+              <a href="/" class="hover:text-[#38AFFF]">Home</a>
+              <a href="/logout" class="hover:text-[#38AFFF]">Logout</a>
+          </div>
       </div>
-    </div>
   </header>
 
   <!-- Main Container -->
-  <div class="container bg-white shadow-lg rounded-lg p-8 space-y-8 mt-20">
+  <div class="container bg-white shadow-lg rounded-lg p-8 space-y-8 mt-12">
     <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">Admin Panel</h1>
 
     <!-- Profile and Code Section -->
