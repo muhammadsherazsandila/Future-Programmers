@@ -114,7 +114,7 @@
                 <% for (let i = 0; i < owners.length; i++) { %>
                 <a href="/owner/<%= owners[i]._id %>"
                     class="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-2xl hover:shadow-lg hover:transition hover:scale-110">
-                    <% if (owner[i].profilePic) { %>
+                    <% if (owners[i].profilePic) { %>
                         <img src="data:<%= owners[i].profilePic.mimetype %>;base64,<%= owners[i].profilePic.toString('base64') %>"
                             alt="Team Member" class="rounded-full w-20 h-20 mb-4">
                       <% } else { %>
