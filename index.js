@@ -10,6 +10,7 @@ require('./config/mongooseConfiguration');
 require('dotenv').config();
 
 app.set("veiw engine" , "ejs")
+app.set('views', path.join(__dirname, 'views'));
 app.use(session({
   secret: `${process.env.JWT_KEY}`,
   resave: false,
