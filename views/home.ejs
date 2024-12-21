@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../stylesSheets/styles.css">
+</head>
+
+<body class="bg-gray-200">
+    <!-- Navbar -->
+    <header class="bg-[#042940] text-white shadow fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold">Future Programmers</a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="sm:hidden text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+
+                <!-- Navigation Links -->
+                <nav id="menu" class="hidden sm:flex space-x-4">
+                    <a href="/" class="hover:text-[#38AFFF]">Home</a>
+                    <a href="#features" class="hover:text-[#38AFFF]">Features</a>
+                    <a href="/loggedInOwner" class="hover:text-[#38AFFF]">Admin</a>
+                </nav>
+            </div>
+
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobileMenu" class="hidden sm:hidden flex flex-col space-y-2 py-4">
+                <a href="/" class="hover:text-[#38AFFF]">Home</a>
+                <a href="#features" class="hover:text-[#38AFFF]">Features</a>
+                <a href="/loggedInOwner" class="hover:text-[#38AFFF]">Admin</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen bg-cover bg-center hero bg-[#042940]">
+        <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+            <div class="text-center text-white px-6">
+                <h1 class="text-3xl md:text-5xl font-bold mb-6">EAT, SLEEP, CODE, REPEAT</h1>
+                <p class="text-base md:text-2xl mb-8">Crafting unique digital experiences for everyone.</p>
+                <a href="#features"
+                    class="px-4 py-2 text-white font-bold rounded-md bg-blue-600 hover:bg-blue-700 transition">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-12 md:py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#042940]">Our Features</h2>
+                <p class="text-base md:text-lg text-[#042940] mt-4">Explore the benefits of choosing our platform</p>
+            </div>
+            <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
+                    <div class="text-[#042940] mb-4">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m-2 4h-1V9h4m6 8h-1v-3h1m-6 3v-6h4v6m6-4v3m-1-3v-6h-4v6m-6-6V9" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">High Performance</h3>
+                    <p class="text-base md:text-lg text-[#042940]">Our platform is optimized for fast and efficient
+                        performance.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
+                    <div class="text-[#042940] mb-4">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.2 0-2.4.5-3.3 1.3L12 12l3.3-3.3A4.7 4.7 0 0012 8zm0 0c1.2 0 2.4.5 3.3 1.3L12 12l-3.3-3.3A4.7 4.7 0 0112 8zM12 12l4.7 4.7a5 5 0 01-7.4 0L12 12z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">Reliability</h3>
+                    <p class="text-base md:text-lg text-[#042940]">Depend on us for consistent and dependable service.
+                    </p>
+                </div>
+                <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
+                    <div class="text-[#042940] mb-4">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 17a4 4 0 100-8 4 4 0 000 8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">User Friendly</h3>
+                    <p class="text-base md:text-lg text-[#042940]">Enjoy an intuitive and seamless experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <div class="bg-gray-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">Our Team</h2>
+            <div
+                class="h-72 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 border rounded-lg shadow bg-white">
+                <% if (owners.length > 0) { %>
+                <% for (let i = 0; i < owners.length; i++) { %>
+                <a href="/owner/<%= owners[i]._id %>"
+                    class="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-2xl hover:shadow-lg hover:transition hover:scale-110">
+                    <img src="data:<%= owners[i].profilePic.mimetype %>;base64,<%= owners[i].profilePic.toString('base64') %>"
+                        alt="Team Member" class="rounded-full w-20 h-20 mb-4">
+                    <h3 class="text-lg font-semibold text-gray-700"><%= owners[i].name %></h3>
+                </a>
+                <% } %>
+                <% } else { %>
+                <p>No Members Yet.</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#042940] py-8 text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="mb-2">&copy; 2025 Future Programmers . All rights reserved.</p>
+            <p>Follow us on <a href="https://github.com/muhammadsherazsandila" class="text-blue-400 hover:text-blue-300">Github</a>, <a href="https://www.facebook.com/profile.php?id=61565496985844"
+                    class="text-blue-400 hover:text-blue-300">Facebook</a>, and <a href="https://www.facebook.com/share/15q8YeeSoE/"
+                    class="text-blue-400 hover:text-blue-300">Instagram</a>.</p>
+        </div>
+    </footer>
+</body>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+
+</html>

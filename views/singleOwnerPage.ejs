@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <style>
+    .highlight-area {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: monospace;
+      font-size: 1rem;
+      background-color: #1e293b;
+      color: #ffffff;
+      border: 1px solid #334155;
+      border-radius: 0.375rem;
+      padding: 1rem;
+      height: 250px;
+      outline: none;
+      line-height: 1.5;
+      overflow-x: auto;
+      width: 100%;
+      resize: none;
+    }
+
+    .highlight-area:empty:before {
+      content: "Type or paste C++ code here...";
+      color: #bbb;
+    }
+
+    .container {
+      max-width: 1000px;
+    }
+
+    #hiddenUpload {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <header class="bg-[#042940] text-white shadow fixed top-0 left-0 w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <a href="#" class="text-xl sm:text-2xl font-bold">Future Programmers</a>
+        <nav class="hidden md:flex space-x-4">
+          <a href="/" class="hover:text-[#38AFFF]">Home</a>
+          <a href="#features" class="hover:text-[#38AFFF]">Features</a>
+          <a href="/loggedInOwner" class="hover:text-[#38AFFF]">Admin</a>
+        </nav>
+        <!-- Mobile menu -->
+        <button id="menuToggle" class="block md:hidden text-[#38AFFF] focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+      <nav id="mobileMenu" class="hidden md:hidden flex-col space-y-4 pb-4">
+        <a href="/" class="block hover:text-[#38AFFF]">Home</a>
+        <a href="#features" class="block hover:text-[#38AFFF]">Features</a>
+        <a href="/login" class="block hover:text-[#38AFFF]">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mt-32 flex flex-col items-center px-4">
+    <div class="block mx-auto mb-8 text-center">
+      <img id="profilePic"
+        src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
+        alt="Profile Picture"
+        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg object-cover mx-auto mb-4">
+      <h4 class="text-lg sm:text-xl font-semibold text-gray-800">
+        <%= owner.name %>
+      </h4>
+    </div>
+
+    <!-- Student Programs List -->
+    <div class="mt-8 w-full max-w-3xl">
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Your Programs</h2>
+      <ul class="space-y-4">
+        <% if (owner.programs.length > 0) { %>
+          <% owner.programs.forEach(program => { %>
+            <a href="/showProgram/<%= program._id %>"
+              class="flex flex-col sm:flex-row items-center justify-between bg-gray-800 hover:bg-gray-900 text-white rounded-lg shadow-sm">
+              <li class="p-4 text-center sm:text-left w-full">
+                <span class="text-base sm:text-lg font-medium">
+                  <%= program.title %>
+                </span>
+              </li>
+            </a>
+          <% }); %>
+        <% } else { %>
+          <p class="text-center text-gray-500">No Programs Yet.</p>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Prism.js for Syntax Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Update Profile Picture
+    function updateProfilePic(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('profilePic').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+
+</html>

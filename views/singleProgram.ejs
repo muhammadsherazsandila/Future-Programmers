@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Viewer</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Prism.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <style>
+    .code-container {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid #334155;
+      border-radius: 0.375rem;
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+    }
+
+    #copyButton {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+  <!-- Header -->
+  <header class="bg-[#042940] text-white shadow fixed top-0 left-0 w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <a href="#" class="text-2xl font-bold">Future Programmers</a>
+        <nav class="hidden md:flex space-x-4">
+          <a href="/" class="hover:text-[#38AFFF]">Home</a>
+          <a href="/loggedInOwner" class="hover:text-[#38AFFF]">Admin</a>
+        </nav>
+        <button id="menuToggle" class="md:hidden text-white focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+      <nav id="mobileMenu" class="hidden md:hidden flex-col space-y-4 pb-4">
+        <a href="/" class="block hover:text-[#38AFFF]">Home</a>
+        <a href="/login" class="block hover:text-[#38AFFF]">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-20 sm:py-24">
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md">
+      <!-- Title -->
+      <div class="p-6 border-b border-gray-300">
+        <h1 id="codeTitle" class="text-xl sm:text-2xl font-bold text-gray-800">
+          <%= program.title %>
+        </h1>
+      </div>
+      <!-- Code Viewer -->
+      <div class="relative p-6 code-container bg-gray-900">
+        <button id="copyButton" onclick="copyCode()" class="bg-blue-500 text-white px-4 py-1 rounded-md absolute right-4 top-4 hover:bg-blue-600">
+          Copy
+        </button>
+        <pre><code id="codeBlock" class="language-javascript">
+          <%= program.code %>
+        </code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prism.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Update and highlight code block
+    const codeBlock = document.getElementById('codeBlock');
+    codeBlock.textContent = code.trim(); // Update the code dynamically
+    Prism.highlightElement(codeBlock); // Highlight code using Prism.js
+
+    // Copy code function
+    function copyCode() {
+      if (codeBlock.innerText !== '') {
+        navigator.clipboard.writeText(codeBlock.innerText);
+        alert("Copied to clipboard!");
+      } else {
+        alert("No code available to copy.");
+      }
+    }
+  </script>
+</body>
+
+</html>

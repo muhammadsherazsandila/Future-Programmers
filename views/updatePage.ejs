@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Viewer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Prism.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+    <style>
+        .code-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #334155;
+            border-radius: 0.375rem;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto py-8">
+        <h1 class="text-center text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-8">You Can Update Your Program</h1>
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md">
+            <form action="/updatedProgram/<%= program._id %>" method="post">
+                <!-- Title Input -->
+                <div class="p-6 border-b border-gray-300">
+                    <label for="titleInput" class="block text-base sm:text-lg font-semibold text-gray-800 mb-2">
+                        Code Title
+                    </label>
+                    <input type="text" id="titleInput"
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-3 text-sm sm:text-base"
+                        value="<%= program.title %>" name="title" />
+                </div>
+                <!-- Code Input -->
+                <div class="p-6 border-b border-gray-300">
+                    <label for="codeInput" class="block text-base sm:text-lg font-semibold text-gray-800 mb-2">
+                        Your Code
+                    </label>
+                    <textarea id="codeInput" rows="8"
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-3 font-mono text-sm"
+                        name="code"><%= program.code %></textarea>
+                    <div class="flex flex-col sm:flex-row justify-evenly items-center space-y-4 sm:space-y-0 mt-4">
+                        <div
+                            class="cursor-pointer py-2 px-4 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center"
+                            onclick="updateCode()">Show Code</div>
+                        <button type="submit"
+                            class="py-2 px-4 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            Upload Code
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Display Title -->
+            <div class="p-6 border-b border-gray-300">
+                <h2 id="codeTitle" class="text-lg sm:text-2xl font-bold text-gray-800">
+                    Your Code Title Will Appear Here
+                </h2>
+            </div>
+
+            <!-- Highlighted Code -->
+            <div class="p-6 code-container bg-gray-900">
+                <pre><code id="codeBlock" class="language-javascript"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script>
+        function updateCode() {
+            // Get title and code input
+            const title = document.getElementById('titleInput').value.trim();
+            const code = document.getElementById('codeInput').value.trim();
+
+            // Update title
+            document.getElementById('codeTitle').innerText = title || "Untitled Code";
+
+            // Update and highlight code
+            const codeBlock = document.getElementById('codeBlock');
+            codeBlock.textContent = code;
+            Prism.highlightElement(codeBlock);
+        }
+    </script>
+</body>
+
+</html>
