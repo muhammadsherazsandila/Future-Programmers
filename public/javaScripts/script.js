@@ -7,11 +7,3 @@ if (alert.innerText !== '') {
         alert.style.opacity = '0'
     }, 2000);
 }
-
-
-const mobileMenuButton = document.getElementById('mobileMenuButton');
-const mobileMenu = document.getElementById('mobileMenu');
-
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
