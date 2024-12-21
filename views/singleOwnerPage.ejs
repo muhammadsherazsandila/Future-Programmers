@@ -68,10 +68,13 @@
 
   <div class="mt-32 flex flex-col items-center px-4">
     <div class="block mx-auto mb-8 text-center">
-      <img id="profilePic"
-        src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
-        alt="Profile Picture"
-        class="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg object-cover mx-auto mb-4">
+      <% if (owner.profilePic) { %>
+        <img src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
+            alt="Team Member" class="rounded-full w-20 h-20 mb-4">
+      <% } else { %>
+        <img src="../images/profilePlaceholder.jpg"
+            alt="Team Member" class="rounded-full w-20 h-20 mb-4">
+      <% } %>
       <h4 class="text-lg sm:text-xl font-semibold text-gray-800">
         <%= owner.name %>
       </h4>

@@ -5,7 +5,6 @@ const ownerShema = mongoose.Schema({
     password : String,
     profilePic : {
         type : Buffer,
-        default : ""
     },
     programs : [{
         type : mongoose.Schema.Types.ObjectId,

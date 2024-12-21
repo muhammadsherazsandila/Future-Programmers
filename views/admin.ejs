@@ -94,9 +94,13 @@
         <div class="flex flex-col lg:flex-row gap-8">
           <!-- Profile Picture Section -->
           <div class="flex flex-col items-center mb-8 lg:mb-0 lg:w-1/4">
-            <img id="profilePic"
-              src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
-              alt="Profile Picture" class="w-32 h-32 rounded-full shadow-lg object-cover mb-4 border border-gray-300">
+            <% if (owner.profilePic) { %>
+              <img src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
+                  alt="Team Member" class="rounded-full w-20 h-20 mb-4">
+            <% } else { %>
+              <img src="../images/profilePlaceholder.jpg"
+                  alt="Team Member" class="rounded-full w-20 h-20 mb-4">
+            <% } %>
             <h4 class="font-semibold text-gray-700">
               <%= owner.name %>
             </h4>
