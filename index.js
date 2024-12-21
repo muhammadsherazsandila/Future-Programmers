@@ -4,14 +4,20 @@ const ownerRouter = require('./routes/ownersRouter');
 const cookieParser = require('cookie-parser');
 const app = express();
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 require('./config/mongooseConfiguration');
+require('dotenv').config();
 
 app.set("veiw engine" , "ejs")
 app.use(session({
-  secret: 'yourSecretKey',
+  secret: `${process.env.JWT_KEY}`,
   resave: false,
   saveUninitialized: true,
+  store: MongoStore.create({
+      mongoUrl: `${process.env.DB_URI}`,
+      collectionName: 'sessions',
+  }),
 }));
 app.use(flash());
 app.use(express.urlencoded({extended : true}));
