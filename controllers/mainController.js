@@ -19,14 +19,14 @@ const createProgram = async (req, res) => {
     })
     owner.programs.push(program._id);
     owner.save();
-    req.flash("error_msg" , "Uploaded Successfully!")
+    req.flash("error_msg", "Uploaded Successfully!")
     res.redirect("/loggedInOwner")
 }
 const adminPage = async (req, res) => {
     let id = req.owner;
     let owner = await ownerModel.findOne({ _id: id }).populate("programs")
     const error_msg = req.flash('error_msg')
-    res.render("admin.ejs", { owner , error_msg})
+    res.render("admin.ejs", { owner, error_msg })
 }
 const showSingleProgram = async (req, res) => {
     let id = req.params.id;
@@ -35,9 +35,15 @@ const showSingleProgram = async (req, res) => {
 }
 const deleteProgram = async (req, res) => {
     let id = req.params.id;
-    await programModel.deleteOne({ _id: id });
-    // flash message ....
-    res.redirect("/loggedInOwner")
+    let owner = await ownerModel.findOne({ _id: req.owner._id });
+    if (owner) {
+        await programModel.deleteOne({ _id: id });
+        let index = owner.programs.indexOf(id);
+        owner.programs.splice(index , 1)
+        await owner.save();
+        req.flash("error_msg", "Deleted Successfully!")
+        res.redirect("/loggedInOwner")
+    }
 }
 const updateProgram = async (req, res) => {
     let id = req.params.id;
