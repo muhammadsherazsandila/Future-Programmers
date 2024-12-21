@@ -5,9 +5,6 @@ const { upload } = require('../utils/uploaPic');
 const mainRouter = express.Router();
 
 mainRouter.get("/" , homePage)
-mainRouter.get("/editor" , ( req , res )=>[
-    res.render("editor.ejs")
-])
 mainRouter.get("/login" , loginPage)
 mainRouter.get("/loggedInOwner" , ownerAuthenticator , adminPage)
 mainRouter.get("/logout" , logoutHandler)
