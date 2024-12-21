@@ -19,6 +19,7 @@ const createProgram = async (req, res) => {
     })
     owner.programs.push(program._id);
     owner.save();
+    req.flash("error_msg" , "Uploaded Successfully!")
     res.redirect("/loggedInOwner")
 }
 const adminPage = async (req, res) => {
