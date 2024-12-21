@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monaco Editor Example</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.37.0/min/vs/editor/editor.main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.37.0/min/vs/loader.js"></script>
+</head>
+<body>
+  <h1>Monaco Editor Example</h1>
+  <div id="editor" style="height: 500px;"></div>
+
+  <script>
+    require.config({
+      paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.37.0/min/vs' }
+    });
+
+    require(['vs/editor/editor.main'], function() {
+      const editor = monaco.editor.create(document.getElementById('editor'), {
+        value: `function sayHello() {
+    console.log('Hello, world!');
+}`,
+        language: 'javascript',
+        theme: 'vs-dark',            // Light theme
+        automaticLayout: true,       // Auto-resize the editor
+        wordWrap: 'on',              // Wrap long lines
+        lineNumbers: 'on',          // Show line numbers
+        fontSize: 14,                // Set font size
+      });
+
+      monaco.languages.registerCompletionItemProvider('javascript', {
+        provideCompletionItems: function(model, position) {
+          return {
+            suggestions: [
+              {
+                label: 'sayHello',
+                kind: monaco.languages.CompletionItemKind.Function,
+                insertText: 'sayHello()',
+                documentation: 'Say hello to the world.'
+              }
+            ]
+          };
+        }
+      });
+
+      editor.onDidChangeModelContent(function() {
+        console.log(editor.getValue());  // Log the current content to the console
+      });
+    });
+  </script>
+</body>
+</html>
