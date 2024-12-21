@@ -1,7 +1,7 @@
 html{
     scroll-behavior: smooth;
 }
-.navigation{
+#navigation{
   position: absolute;
   left: 0;
   top: 0;
