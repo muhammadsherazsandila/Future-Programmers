@@ -67,7 +67,7 @@
   </header>
 
   <div class="mt-32 flex flex-col items-center px-4">
-    <div class="block mx-auto mb-8 text-center">
+    <div class="block mx-auto mb-8 flex justify-between items-center flex-col">
       <% if (owner.profilePic) { %>
         <img src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
             alt="Team Member" class="rounded-full w-20 h-20 mb-4">
@@ -87,7 +87,7 @@
         <% if (owner.programs.length > 0) { %>
           <% owner.programs.forEach(program => { %>
             <a href="/showProgram/<%= program._id %>"
-              class="flex flex-col sm:flex-row items-center justify-between bg-gray-800 hover:bg-gray-900 text-white rounded-lg shadow-sm">
+              class="flex flex-col sm:flex-row items-center justify-between bg-gray-900 hover:bg-gray-800 text-white rounded-lg shadow-sm">
               <li class="p-4 text-center sm:text-left w-full">
                 <span class="text-base sm:text-lg font-medium">
                   <%= program.title %>
