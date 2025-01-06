@@ -110,19 +110,19 @@
             <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">Our Team</h2>
             <div
                 class="h-72 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 border rounded-lg shadow bg-white">
-                <% if (owners.length > 0) { %>
-                <% for (let i = 0; i < owners.length; i++) { %>
-                <a href="/owner/<%= owners[i]._id %>"
+                <% if (sortedOwners.length > 0) { %>
+                <% for (let i = 0; i < sortedOwners.length; i++) { %>
+                <a href="/owner/<%= sortedOwners[i]._id %>"
                     class="relative flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-2xl hover:shadow-lg hover:transition hover:scale-110">
-                    <% if (owners[i].profilePic) { %>
-                        <img src="data:<%= owners[i].profilePic.mimetype %>;base64,<%= owners[i].profilePic.toString('base64') %>"
+                    <% if (sortedOwners[i].profilePic) { %>
+                        <img src="data:<%= sortedOwners[i].profilePic.mimetype %>;base64,<%= sortedOwners[i].profilePic.toString('base64') %>"
                             alt="Team Member" class="rounded-full w-20 h-20 mb-4">
                       <% } else { %>
                         <img src="../images/profilePlaceholder.jpg"
                             alt="Team Member" class="rounded-full w-20 h-20 mb-4">
                       <% } %>
-                    <h3 class="text-lg font-semibold text-gray-700"><%= owners[i].name %></h3>
-                    <p class="text-gray-700"> Programs : <%= owners[i].programs.length %></p>
+                    <h3 class="text-lg font-semibold text-gray-700"><%= sortedOwners[i].name %></h3>
+                    <p class="text-gray-700"> Programs : <%= sortedOwners[i].programs.length %></p>
                 </a>
                 <% } %>
                 <% } else { %>

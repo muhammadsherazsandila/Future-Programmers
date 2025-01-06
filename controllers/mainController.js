@@ -3,7 +3,23 @@ const ownerModel = require("../models/ownerModel");
 
 const homePage = async (req, res) => {
     let owners = await ownerModel.find();
-    res.render("home.ejs", { owners })
+    // Algoritnm to sort the owners based on the number of programs they have
+    let ownerProgramsArr = [];
+    for (let i = 0; i < owners.length; i++) {
+        ownerProgramsArr.push(owners[i].programs.length)
+    }
+    ownerProgramsArr.sort((a, b) => b - a)
+    let sortedOwners = [];
+    for (let i = 0; i < ownerProgramsArr.length; i++) {
+        for (let j = 0; j < owners.length; j++) {
+            if (ownerProgramsArr[i] === owners[j].programs.length) {
+                if (!sortedOwners.includes(owners[j])) {
+                    sortedOwners.push(owners[j])
+                }
+            }
+        }
+    }
+    res.render("home.ejs", { sortedOwners })
 }
 const loginPage = async (req, res) => {
     const error_msg = req.flash('error_msg'); // Retrieves the error message
