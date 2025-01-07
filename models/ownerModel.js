@@ -9,7 +9,8 @@ const ownerShema = mongoose.Schema({
     programs : [{
         type : mongoose.Schema.Types.ObjectId,
         ref : "program"
-    }]
+    }],
+    verificationCode : String
 })
 
 module.exports = mongoose.model("owner" , ownerShema)

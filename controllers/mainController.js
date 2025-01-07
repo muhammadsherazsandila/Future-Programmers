@@ -87,4 +87,15 @@ const logoutHandler = async (req, res) => {
     res.cookie("token", "")
     res.redirect("/login")
 }
-module.exports = { homePage, createProgram, loginPage, adminPage, showSingleProgram, deleteProgram, updateProgram, updatedProgram, profilePicUpload, logoutHandler }
+const resetPassPage = async (req, res) => {
+    let id = req.owner;
+    let owner = await ownerModel.findOne({ _id: id });
+    const error_msg = req.flash('error_msg')
+    res.render("resetPass.ejs", { owner , error_msg})
+}
+const verificationCodePage = async (req, res) => {
+    const error_msg = req.flash('error_msg')
+    res.render("verificationCodePage.ejs" , {error_msg})
+}
+
+module.exports = { homePage, createProgram, loginPage, adminPage, showSingleProgram, deleteProgram, updateProgram, updatedProgram, profilePicUpload, logoutHandler , resetPassPage ,verificationCodePage}

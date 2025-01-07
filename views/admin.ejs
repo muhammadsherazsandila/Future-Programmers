@@ -94,26 +94,26 @@
         <div class="flex flex-col lg:flex-row gap-8">
           <!-- Profile Picture Section -->
           <div class="flex flex-col items-center mb-8 lg:mb-0 lg:w-1/4">
+            <img src="" alt="Team Member" class="rounded-full w-20 h-20 mb-4 hidden" id="profilePicPreview">
             <% if (owner.profilePic) { %>
-              <img src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
-                  alt="Team Member" class="rounded-full w-20 h-20 mb-4">
-            <% } else { %>
-              <img src="../images/profilePlaceholder.jpg"
-                  alt="Team Member" class="rounded-full w-20 h-20 mb-4">
-            <% } %>
-            <h4 class="font-semibold text-gray-700">
-              <%= owner.name %>
-            </h4>
-            <form action="/uploadPic/<%= owner._id %>" method="post" enctype="multipart/form-data" class="mt-4">
-              <label for="profileInput" id="visibleUpload"
-                class="bg-blue-600 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700">
-                Upload Picture
-                <input type="file" name="profilePic" id="profileInput" accept="image/*" class="hidden"
-                  onchange="updateProfilePic(event)">
-              </label>
-              <button type="submit" id="hiddenUpload"
-                class="bg-green-600 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-green-700">Confirm</button>
-            </form>
+              <img src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %> "
+                alt="Team Member" class="rounded-full w-20 h-20 mb-4 profilePic" id="orginalProfilePic">
+              <% } else { %>
+                <img src="../images/profilePlaceholder.jpg" alt="Team Member"
+                  class="rounded-full w-20 h-20 mb-4 profilePic">
+                <% } %>
+                  <h4 class="font-semibold text-gray-700">
+                    <%= owner.name %>
+                  </h4>
+                  <form action="/uploadPic/<%= owner._id %>" method="post" enctype="multipart/form-data" class="mt-4">
+                    <label for="profileInput" id="visibleUpload"
+                      class="bg-blue-600 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-blue-700">
+                      Select Picture
+                      <input type="file" name="profilePic" id="profileInput" accept="image/*" class="hidden">
+                    </label>
+                    <button type="submit" id="hiddenUpload"
+                      class="bg-green-600 text-white py-2 px-4 rounded-lg cursor-pointer hover:bg-green-700">Upload</button>
+                  </form>
           </div>
 
           <!-- Code Input Section -->
@@ -173,7 +173,32 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
       <script src="../javaScripts/script.js"></script>
       <script>
+        // Update Profile Picture
+        const profileInput = document.getElementById('profileInput');
+        const profilePicPreview = document.getElementById('profilePicPreview');
+        const orginalProfilePic = document.getElementById('orginalProfilePic');
+        let profilePic = document.querySelectorAll('.profilePic');
+        const visibleUpload = document.getElementById('visibleUpload');
+        const hiddenUpload = document.getElementById('hiddenUpload');
+        profileInput.addEventListener('change', (event) => {
+          const file = event.target.files[0];
+          const url = URL.createObjectURL(file);
+          profilePicPreview.src = url;
+          profilePicPreview.style.display = 'block';
+          profilePic.forEach(e => {
+            e.style.display = 'none';
+          })
+          visibleUpload.style.display = 'none'
+          hiddenUpload.style.display = 'block'
 
+        })
+
+        hiddenUpload.addEventListener('click', () => {
+          setTimeout(() => {
+            orginalProfilePic.style.display = 'block';
+            profilePicPreview.style.display = 'none';
+          }, 4000);
+        })
         // Highlight Code
         const codeInput = document.getElementById('codeInput');
         const codeHighlight = document.getElementById('codeHighlight');
