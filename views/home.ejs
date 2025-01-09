@@ -108,6 +108,7 @@
     <div class="bg-gray-100 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">Our Team</h2>
+            <p class="text-center mb-2 italic underline text-gray-800">Total Members :  <%= sortedOwners.length %> </p>
             <div
                 class="h-72 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 border rounded-lg shadow bg-white">
                 <% if (sortedOwners.length > 0) { %>
@@ -121,7 +122,7 @@
                         <img src="../images/profilePlaceholder.jpg"
                             alt="Team Member" class="rounded-full w-20 h-20 mb-4">
                       <% } %>
-                    <h3 class="text-lg font-semibold text-gray-700"><%= sortedOwners[i].name %></h3>
+                    <h3 class="text-lg text-center font-semibold text-gray-700"><%= sortedOwners[i].name %></h3>
                     <p class="text-gray-700"> Programs : <%= sortedOwners[i].programs.length %></p>
                 </a>
                 <% } %>
@@ -136,8 +137,8 @@
     <footer class="bg-[#042940] py-8 text-white">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <p class="mb-2">&copy; 2025 Future Programmers . All rights reserved.</p>
-            <p>Follow us on <a href="https://github.com/muhammadsherazsandila" class="text-blue-400 hover:text-blue-300">Github</a>, <a href="https://www.facebook.com/profile.php?id=61565496985844"
-                    class="text-blue-400 hover:text-blue-300">Facebook</a>, and <a href="https://www.facebook.com/share/15q8YeeSoE/"
+            <p>Follow us on <a href="https://github.com/muhammadsherazsandila" class="text-blue-400 hover:text-blue-300">Github</a>, <a href="https://youtube.com/@openmarket_046?si=XXFtysgu-4JXdggK"
+                    class="text-blue-400 hover:text-blue-300">YouTube</a>, and <a href="https://www.facebook.com/share/15q8YeeSoE/"
                     class="text-blue-400 hover:text-blue-300">Instagram</a>.</p>
         </div>
     </footer>
