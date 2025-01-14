@@ -2,19 +2,19 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 // Configure transporter
-const transporter = nodemailer.createTransport({
-    service: 'Gmail', // Use 'Gmail' or your email provider
+var transporter = nodemailer.createTransport({
+    host: "live.smtp.mailtrap.io",
+    port: 587,
     auth: {
-        user: `${process.env.AdminEmail}`, // Your email
-        pass: `${process.env.AdminPassword}`, // Your email password or app password
-    },
+        user: "api",
+        pass: "a6a7bc971a742dc5452b1feb8f3a30f7"
+    }
 });
-
 // Send email function
 const sendVerificationEmail = async (toEmail, verificationCode) => {
     try {
         const mailOptions = {
-            from: `${process.env.AdminEmail}`, // Your email
+            from: '<hello@demomailtrap.com>', // Your email
             to: toEmail,
             subject: 'Your Verification Code',
             html: `<!DOCTYPE html>
