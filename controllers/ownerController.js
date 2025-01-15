@@ -64,18 +64,18 @@ const verifyCodePage = async (req, res) => {
         owner.verificationCode = verificationCode;
         await owner.save();
         sendVerificationEmail(owner.email, verificationCode);
-        let token = jwt.sign({ email: owner.email, _id: owner._id }, process.env.JWT_KEY)
-        res.cookie("token", token)
         res.redirect("/verificationCode")
     } else {
         req.flash('error_msg', 'Wrong Email!');
         res.redirect("/login")
     }
 }
-const resetOwnerPass = async (req, res) => {
+const verifyCode = async (req, res) => {
     let { code } = req.body;
     let owner = await ownerModel.findOne({ verificationCode: code });
     if (owner) {
+        let token = jwt.sign( {vCode : code} , process.env.JWT_KEY)
+        res.cookie("token" , token)
         res.redirect("/resetOwnerPass")
     } else {
         req.flash('error_msg', 'Wrong Code!');
@@ -84,12 +84,13 @@ const resetOwnerPass = async (req, res) => {
 
 }
 const resetPassword = async (req, res) => {
-    let id = req.owner;
+    let cookie = req.cookies.token
+    let data = jwt.verify(cookie , process.env.JWT_KEY)
     let {newPassword , confirmPassword} = req.body;
     if(newPassword === confirmPassword){
         bcrypt.genSalt(10, function (err, salt) {
             bcrypt.hash(newPassword, salt, async function (err, hash) {
-                let owner = await ownerModel.findOne({_id : id});
+                let owner = await ownerModel.findOne({verificationCode : data.vCode});
                 owner.password = hash;
                 owner.verificationCode = "";
                 await owner.save();
@@ -106,5 +107,5 @@ const resetPassword = async (req, res) => {
 
 
 }
-module.exports = { dashboard, createOwner, loginOwner , singleOwner , resetOwnerPass , verifyCodePage , resetPassword}
+module.exports = { dashboard, createOwner, loginOwner , singleOwner , verifyCode , verifyCodePage , resetPassword}
 

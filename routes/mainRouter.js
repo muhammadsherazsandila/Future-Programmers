@@ -14,7 +14,7 @@ mainRouter.get("/deleteProgram/:id" , ownerAuthenticator , deleteProgram)
 mainRouter.get("/updateProgram/:id" , updateProgram)
 mainRouter.post("/updatedProgram/:id" , updatedProgram)
 mainRouter.post("/uploadPic/:id" , upload.single("profilePic") , profilePicUpload)
-mainRouter.get("/resetOwnerPass" , ownerAuthenticator, resetPassPage)
+mainRouter.get("/resetOwnerPass" , resetPassPage)
 mainRouter.get("/verificationCode" , verificationCodePage)
 
 module.exports = mainRouter

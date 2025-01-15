@@ -1,5 +1,5 @@
 const express = require('express');
-const { dashboard, createOwner, loginOwner, resetOwnerPass, singleOwner ,verifyCodePage , resetPassword} = require('../controllers/ownerController');
+const { dashboard, createOwner, loginOwner, verifyCode, singleOwner ,verifyCodePage , resetPassword} = require('../controllers/ownerController');
 const ownerAuthenticator = require('../middlewares/ownerAuth');
 const ownerRouter = express.Router();
 
@@ -8,6 +8,6 @@ ownerRouter.post("/register" , createOwner)
 ownerRouter.post("/login" , loginOwner)
 ownerRouter.get("/:id" , singleOwner)
 ownerRouter.post("/verifyCodePage" , verifyCodePage)
-ownerRouter.post("/verifyCode" , ownerAuthenticator,  resetOwnerPass)
-ownerRouter.post("/resetPassword" , ownerAuthenticator , resetPassword)
+ownerRouter.post("/verifyCode" ,  verifyCode)
+ownerRouter.post("/resetPassword"  , resetPassword)
 module.exports = ownerRouter
