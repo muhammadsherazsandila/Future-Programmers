@@ -11,10 +11,10 @@ var transporter = nodemailer.createTransport({
     }
 });
 // Send email function
-const sendVerificationEmail = async (toEmail, verificationCode) => {
+const sendVerificationEmail = async (toEmail, verificationCode, name) => {
     try {
         const mailOptions = {
-            from: '<hello@demomailtrap.com>', // Your email
+            from: '<Futute-Programmers@demomailtrap.com>', // Your email
             to: toEmail,
             subject: 'Your Verification Code',
             html: `<!DOCTYPE html>
@@ -58,6 +58,7 @@ const sendVerificationEmail = async (toEmail, verificationCode) => {
             font-weight: bold;
             color: #007bff;
             margin: 20px 0;
+            letter-spacing : 1rem;
         }
         .footer {
             text-align: center;
@@ -76,8 +77,7 @@ const sendVerificationEmail = async (toEmail, verificationCode) => {
         </div>
         <!-- Content -->
         <div class="content">
-            <p>Aslam-O-Alikum,</p>
-            <p>Muhammad Sheraz is Here,</p>
+            <p>Aslam-O-Alikum, ${name}</p>
             <p>Your verification code is:</p>
             <div class="verification-code">${verificationCode}</div> <!-- Replace 123456 dynamically -->
             <p>Please enter this code to complete your verification process.</p>

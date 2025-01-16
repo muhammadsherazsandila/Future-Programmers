@@ -63,7 +63,7 @@ const verifyCodePage = async (req, res) => {
         let verificationCode = Math.floor(Math.random() * 1000000);
         owner.verificationCode = verificationCode;
         await owner.save();
-        sendVerificationEmail(owner.email, verificationCode);
+        sendVerificationEmail(owner.email, verificationCode , owner.name);
         res.redirect("/verificationCode")
     } else {
         req.flash('error_msg', 'Wrong Email!');
