@@ -7,10 +7,29 @@
     <title>Future Programmers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../stylesSheets/styles.css">
+    <style>
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 0.5);
+        transform: scale(0);
+        animation: ripple 0.6s ease-out;
+        pointer-events: none;
+        z-index: 10000;
+      }
+      @keyframes ripple {
+        to {
+          transform: scale(5);
+          opacity: 0;
+        }
+      }
+    </style>
 
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 body">
     <!-- Navbar -->
     <header class="bg-[#042940] text-white shadow fixed w-full z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -163,6 +182,19 @@
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
+    document.addEventListener('click', (event) => {
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple');
+      ripple.style.left = `${event.clientX - 10}px`;
+      ripple.style.top = `${event.clientY - 10}px`;
+      document.querySelector(".body").appendChild(ripple);
+
+      // Remove the ripple after animation
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
+      });
+    });
 </script>
 
+<script src="../javaScripts/script.js"></script>
 </html>
