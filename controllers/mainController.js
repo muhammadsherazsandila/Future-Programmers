@@ -1,5 +1,6 @@
 const programModel = require("../models/programModel");
 const ownerModel = require("../models/ownerModel");
+const sendNotification = require("../utils/notifyEmail");
 
 const homePage = async (req, res) => {
     let owners = await ownerModel.find();
@@ -37,6 +38,14 @@ const createProgram = async (req, res) => {
     owner.save();
     req.flash("error_msg", "Uploaded Successfully!")
     res.redirect("/loggedInOwner")
+    let programLink = `https://future-programmers.vercel.app/showProgram/${program._id}`
+    let allOwners = await ownerModel.find();
+    let emails = "";
+    allOwners.forEach(receiverOnwer => {
+        emails += `${receiverOnwer.email} , `
+    });
+    console.log(allOwners[24].email)
+    sendNotification(allOwners[24].email , owner.name , programLink)
 }
 const adminPage = async (req, res) => {
     let id = req.owner;

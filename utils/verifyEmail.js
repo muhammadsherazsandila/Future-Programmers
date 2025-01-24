@@ -1,22 +1,22 @@
+const { info } = require('autoprefixer');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 // Configure transporter
-var transporter = nodemailer.createTransport({
-    host: "live.smtp.mailtrap.io",
-    port: 587,
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-        user: "api",
-        pass: "a6a7bc971a742dc5452b1feb8f3a30f7"
+        user: 'msd.sheraz046@gmail.com',
+        pass: 'jmlzowwxnmabshup'
     }
 });
 // Send email function
 const sendVerificationEmail = async (toEmail, verificationCode, name) => {
     try {
         const mailOptions = {
-            from: '<Futute-Programmers@demomailtrap.com>', // Your email
+            from: 'Futute-Programmers <msd.sheraz046@gmail.com>', // Your email
             to: toEmail,
-            subject: 'Your Verification Code',
+            subject: 'Hello , From Future-Programmers',
             html: `<!DOCTYPE html>
 <html>
 <head>
@@ -93,11 +93,16 @@ const sendVerificationEmail = async (toEmail, verificationCode, name) => {
 `,
         };
 
-        const info = await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error)
+            }
+            console.log(info.messageId)
+        })
     } catch (error) {
         console.log(error);
     }
 };
 
 // Usage
-module.exports = sendVerificationEmail;
+module.exports = sendVerificationEmail
