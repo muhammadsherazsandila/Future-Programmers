@@ -3,7 +3,7 @@ const ownerModel = require("../models/ownerModel");
 const sendNotification = require("../utils/notifyEmail");
 
 const homePage = async (req, res) => {
-    let owners = await ownerModel.find();
+    let owners = await ownerModel.find({});
     // Algoritnm to sort the owners based on the number of programs they have
     let ownerProgramsArr = [];
     for (let i = 0; i < owners.length; i++) {
