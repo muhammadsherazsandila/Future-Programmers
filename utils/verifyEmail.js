@@ -2,7 +2,7 @@ const { info } = require('autoprefixer');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-// Configure transporter
+// Configure transporte
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
