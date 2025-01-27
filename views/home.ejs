@@ -87,11 +87,11 @@
             <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
                     <div class="text-[#042940] mb-4">
-                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16h-1v-4h-1m-2 4h-1V9h4m6 8h-1v-3h1m-6 3v-6h4v6m6-4v3m-1-3v-6h-4v6m-6-6V9" />
-                        </svg>
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 2L3 14h8l-1 8L21 10h-8l1-8z" />
+                    </svg>
+                    
                     </div>
                     <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">High Performance</h3>
                     <p class="text-base md:text-lg text-[#042940]">Our platform is optimized for fast and efficient
@@ -99,11 +99,11 @@
                 </div>
                 <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
                     <div class="text-[#042940] mb-4">
-                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8c-1.2 0-2.4.5-3.3 1.3L12 12l3.3-3.3A4.7 4.7 0 0012 8zm0 0c1.2 0 2.4.5 3.3 1.3L12 12l-3.3-3.3A4.7 4.7 0 0112 8zM12 12l4.7 4.7a5 5 0 01-7.4 0L12 12z" />
+                                d="M12 2l9 4.5v7a12 12 0 01-9 11 12 12 0 01-9-11v-7L12 2z" />
                         </svg>
+                        
                     </div>
                     <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">Reliability</h3>
                     <p class="text-base md:text-lg text-[#042940]">Depend on us for consistent and dependable service.
@@ -111,11 +111,11 @@
                 </div>
                 <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
                     <div class="text-[#042940] mb-4">
-                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 17a4 4 0 100-8 4 4 0 000 8z" />
+                                d="M12 12a5 5 0 100-10 5 5 0 000 10zm-4 4a8 8 0 018 0M9 9h.01M15 9h.01" />
                         </svg>
+                        
                     </div>
                     <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">User Friendly</h3>
                     <p class="text-base md:text-lg text-[#042940]">Enjoy an intuitive and seamless experience.</p>
@@ -138,10 +138,10 @@
                             class="relative flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-2xl hover:shadow-lg hover:transition hover:scale-110">
                             <% if (sortedOwners[i].profilePic) { %>
                                 <img src="data:<%= sortedOwners[i].profilePic.mimetype %>;base64,<%= sortedOwners[i].profilePic.toString('base64') %>"
-                                    alt="Team Member" class="rounded-full w-20 h-20 mb-4">
+                                    alt="Team Member" class="rounded-full w-20 h-20 mb-4 border-[#042940] border-[5px]">
                                 <% } else { %>
                                     <img src="../images/profilePlaceholder.jpg" alt="Team Member"
-                                        class="rounded-full w-20 h-20 mb-4">
+                                        class="rounded-full w-20 h-20 mb-4 border-[#042940] border-[5px]">
                                     <% } %>
                                         <h3 class="text-lg text-center font-semibold text-gray-700">
                                             <%= sortedOwners[i].name %>
