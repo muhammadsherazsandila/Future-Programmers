@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= owner.name %></title>
+  <title>
+    <%= owner.name %>
+  </title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
   <link href="https://unpkg.com/@heroicons/v2.0.18/24/outline/index.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
+
     body {
       font-family: 'Inter', sans-serif;
     }
@@ -44,7 +46,7 @@
           <span class="bg-blue-500 w-4 h-4 rounded-full mr-2"></span>
           Future Programmers
         </a>
-        
+
         <nav class="hidden md:flex space-x-8">
           <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
           <a href="/loggedInOwner" class="hover:text-blue-400 transition-colors">Admin</a>
@@ -66,48 +68,46 @@
         <div class="inline-block relative profile-shadow">
           <% if (owner.profilePic) { %>
             <img src="data:<%= owner.profilePic.mimetype %>;base64,<%= owner.profilePic.toString('base64') %>"
+              class="rounded-full w-32 h-32 border-4 border-white object-cover">
+            <% } else { %>
+              <img src="../images/profilePlaceholder.jpg"
                 class="rounded-full w-32 h-32 border-4 border-white object-cover">
-          <% } else { %>
-            <img src="../images/profilePlaceholder.jpg"
-                class="rounded-full w-32 h-32 border-4 border-white object-cover">
-          <% } %>
-          <div class="absolute inset-0 border-2 border-white/30 rounded-full animate-pulse"></div>
+              <% } %>
+                <div class="absolute inset-0 border-2 border-white/30 rounded-full animate-pulse"></div>
         </div>
-        <h1 class="mt-6 text-3xl font-bold text-gray-900"><%= owner.name %></h1>
+        <h1 class="mt-6 text-3xl font-bold text-gray-900">
+          <%= owner.name %>
+        </h1>
       </div>
 
       <!-- Programs Section -->
       <section class="space-y-6">
         <div class="flex justify-between items-center mb-6">
           <h2 class="text-2xl font-semibold text-gray-900">Your Programs</h2>
-          <button class="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            <span>New Program</span>
-          </button>
         </div>
 
-        <% if (owner.programs.length > 0) { %>
+        <% if (owner.programs.length> 0) { %>
           <div class="grid gap-4">
-            <% owner.programs.forEach(program => { %>
-              <a href="/showProgram/<%= program._id %>" 
-                 class="program-card group flex items-center justify-between p-6 rounded-xl border border-gray-200 hover:border-blue-500">
+            <% owner.programs.forEach(program=> { %>
+              <a href="/showProgram/<%= program._id %>"
+                class="program-card group flex items-center justify-between p-6 rounded-xl border border-gray-200 hover:border-blue-500">
                 <div>
-                  <h3 class="text-lg font-semibold text-white"><%= program.title %></h3>
-                  <p class="text-gray-400 mt-1 text-sm">Last modified: 2 days ago</p>
+                  <h3 class="text-lg font-semibold text-white">
+                    <%= program.title %>
+                  </h3>
                 </div>
-                <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none"
+                  stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </a>
-            <% }); %>
+              <% }); %>
           </div>
-        <% } else { %>
-          <div class="text-center py-12 rounded-xl bg-gray-50 border-2 border-dashed border-gray-200">
-            <p class="text-gray-500">No programs created yet. Click "New Program" to get started!</p>
-          </div>
-        <% } %>
+          <% } else { %>
+            <div class="text-center py-12 rounded-xl bg-gray-50 border-2 border-dashed border-gray-200">
+              <p class="text-gray-500">No programs created yet!</p>
+            </div>
+            <% } %>
       </section>
     </div>
   </main>
