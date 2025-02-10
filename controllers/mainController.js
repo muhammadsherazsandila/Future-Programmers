@@ -52,7 +52,7 @@ const adminPage = async (req, res) => {
     let id = req.owner;
     let owner = await ownerModel.findOne({ _id: id }).populate("programs")
     const error_msg = req.flash('error_msg')
-    res.render("admin1.ejs", { owner, error_msg })
+    res.render("admin.ejs", { owner, error_msg })
 }
 const showSingleProgram = async (req, res) => {
     let id = req.params.id;
@@ -96,11 +96,15 @@ const updatedProgram = async (req, res) => {
     res.redirect("/loggedInOwner")
 }
 const profilePicUpload = async (req, res) => {
-    let id = req.params.id;
-    let owner = await ownerModel.findOne({ _id: id });
-    owner.profilePic = req.file.buffer;
-    await owner.save();
-    res.redirect("/loggedInOwner")
+    if (req.params.id === req.owner) {
+        let owner = await ownerModel.findOne({ _id: req.params.id });
+        owner.profilePic = req.file.buffer;
+        await owner.save();
+        res.redirect("/loggedInOwner")
+    }
+    else {
+        res.send("Hello , Hackerma This time it's not easy!")
+    }
 }
 const logoutHandler = async (req, res) => {
     res.cookie("token", "")
