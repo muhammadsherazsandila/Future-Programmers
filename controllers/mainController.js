@@ -52,7 +52,7 @@ const adminPage = async (req, res) => {
     let id = req.owner;
     let owner = await ownerModel.findOne({ _id: id }).populate("programs")
     const error_msg = req.flash('error_msg')
-    res.render("admin.ejs", { owner, error_msg })
+    res.render("admin1.ejs", { owner, error_msg })
 }
 const showSingleProgram = async (req, res) => {
     let id = req.params.id;
@@ -74,8 +74,17 @@ const deleteProgram = async (req, res) => {
 const updateProgram = async (req, res) => {
     let id = req.params.id;
     let program = await programModel.findOne({ _id: id });
-    req.flash("error_msg", "Updated Successfully!")
-    res.render("updatePage.ejs", { program })
+    let owner = await ownerModel.findOne({ _id: req.owner })
+    console.log(program.ownerId)
+    for (const ids of owner.programs) {
+        if (ids === id) {
+            req.flash("error_msg", "Updated Successfully!")
+            res.render("updatePage.ejs", { program })
+            break;
+            return;
+        }
+    }
+    res.send("Hello , Hacker man this time it's not easy!")
 }
 const updatedProgram = async (req, res) => {
     let id = req.params.id;
