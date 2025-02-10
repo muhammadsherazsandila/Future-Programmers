@@ -75,16 +75,14 @@ const updateProgram = async (req, res) => {
     let id = req.params.id;
     let program = await programModel.findOne({ _id: id });
     let owner = await ownerModel.findOne({ _id: req.owner })
-    console.log(program.ownerId)
-    for (const ids of owner.programs) {
-        if (ids === id) {
-            req.flash("error_msg", "Updated Successfully!")
-            res.render("updatePage.ejs", { program })
-            break;
-            return;
-        }
+    let isProgramId = owner.programs.some(programId => programId.toString() === id)
+    if (isProgramId) {
+        req.flash("error_msg", "Updated Successfully!")
+        res.render("updatePage.ejs", { program })
+    } else {
+        res.send("Hello , Hackerman This Time It's Not Easy!")
     }
-    res.send("Hello , Hacker man this time it's not easy!")
+
 }
 const updatedProgram = async (req, res) => {
     let id = req.params.id;
@@ -96,15 +94,16 @@ const updatedProgram = async (req, res) => {
     res.redirect("/loggedInOwner")
 }
 const profilePicUpload = async (req, res) => {
-    if (req.params.id === req.owner) {
+    let id = req.owner;
+    if (id.toString() === req.params.id) {
         let owner = await ownerModel.findOne({ _id: req.params.id });
         owner.profilePic = req.file.buffer;
         await owner.save();
         res.redirect("/loggedInOwner")
+    } else {
+        res.send("Hello , Hackerman This Time It's Not Easy!")
     }
-    else {
-        res.send("Hello , Hackerma This time it's not easy!")
-    }
+
 }
 const logoutHandler = async (req, res) => {
     res.cookie("token", "")
