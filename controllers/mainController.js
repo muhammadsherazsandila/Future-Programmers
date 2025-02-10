@@ -1,5 +1,6 @@
 const programModel = require("../models/programModel");
 const ownerModel = require("../models/ownerModel");
+const fs = require('fs');
 const sendNotification = require("../utils/notifyEmail");
 
 const homePage = async (req, res) => {
@@ -45,7 +46,7 @@ const createProgram = async (req, res) => {
         emails += `${receiverOnwer.email} , `
     });
     console.log(allOwners[24].email)
-    sendNotification(allOwners[24].email , owner.name , programLink)
+    sendNotification(allOwners[24].email, owner.name, programLink)
 }
 const adminPage = async (req, res) => {
     let id = req.owner;
@@ -64,7 +65,7 @@ const deleteProgram = async (req, res) => {
     if (owner) {
         await programModel.deleteOne({ _id: id });
         let index = owner.programs.indexOf(id);
-        owner.programs.splice(index , 1)
+        owner.programs.splice(index, 1)
         await owner.save();
         req.flash("error_msg", "Deleted Successfully!")
         res.redirect("/loggedInOwner")
@@ -100,11 +101,11 @@ const resetPassPage = async (req, res) => {
     let id = req.owner;
     let owner = await ownerModel.findOne({ _id: id });
     const error_msg = req.flash('error_msg')
-    res.render("resetPass.ejs", { owner , error_msg})
+    res.render("resetPass.ejs", { owner, error_msg })
 }
 const verificationCodePage = async (req, res) => {
     const error_msg = req.flash('error_msg')
-    res.render("verificationCodePage.ejs" , {error_msg})
+    res.render("verificationCodePage.ejs", { error_msg })
 }
 
-module.exports = { homePage, createProgram, loginPage, adminPage, showSingleProgram, deleteProgram, updateProgram, updatedProgram, profilePicUpload, logoutHandler , resetPassPage ,verificationCodePage}
+module.exports = { homePage, createProgram, loginPage, adminPage, showSingleProgram, deleteProgram, updateProgram, updatedProgram, profilePicUpload, logoutHandler, resetPassPage, verificationCodePage }

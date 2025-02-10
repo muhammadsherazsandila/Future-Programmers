@@ -8,23 +8,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../stylesSheets/styles.css">
     <style>
-      .ripple {
-        position: absolute;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        background-color: rgba(255, 255, 255, 0.5);
-        transform: scale(0);
-        animation: ripple 0.6s ease-out;
-        pointer-events: none;
-        z-index: 10000;
-      }
-      @keyframes ripple {
-        to {
-          transform: scale(5);
-          opacity: 0;
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 10000;
         }
-      }
+
+        @keyframes ripple {
+            to {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
     </style>
 
 </head>
@@ -87,11 +88,12 @@
             <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
                     <div class="text-[#042940] mb-4">
-                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 2L3 14h8l-1 8L21 10h-8l1-8z" />
-                    </svg>
-                    
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 2L3 14h8l-1 8L21 10h-8l1-8z" />
+                        </svg>
+
                     </div>
                     <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">High Performance</h3>
                     <p class="text-base md:text-lg text-[#042940]">Our platform is optimized for fast and efficient
@@ -99,11 +101,12 @@
                 </div>
                 <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
                     <div class="text-[#042940] mb-4">
-                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 2l9 4.5v7a12 12 0 01-9 11 12 12 0 01-9-11v-7L12 2z" />
                         </svg>
-                        
+
                     </div>
                     <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">Reliability</h3>
                     <p class="text-base md:text-lg text-[#042940]">Depend on us for consistent and dependable service.
@@ -111,11 +114,12 @@
                 </div>
                 <div class="bg-white p-6 md:p-8 shadow-lg rounded-lg text-center transition hover:scale-110">
                     <div class="text-[#042940] mb-4">
-                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-12 h-12 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 12a5 5 0 100-10 5 5 0 000 10zm-4 4a8 8 0 018 0M9 9h.01M15 9h.01" />
                         </svg>
-                        
+
                     </div>
                     <h3 class="text-xl md:text-2xl text-[#042940] font-semibold mb-4">User Friendly</h3>
                     <p class="text-base md:text-lg text-[#042940]">Enjoy an intuitive and seamless experience.</p>
@@ -136,18 +140,14 @@
                     <% for (let i=0; i < sortedOwners.length; i++) { %>
                         <a href="/owner/<%= sortedOwners[i]._id %>"
                             class="relative flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-2xl hover:shadow-lg hover:transition hover:scale-110">
-                            <% if (sortedOwners[i].profilePic) { %>
-                                <img src="data:<%= sortedOwners[i].profilePic.mimetype %>;base64,<%= sortedOwners[i].profilePic.toString('base64') %>"
-                                    alt="Team Member" class="rounded-full w-20 h-20 mb-4 border-[#042940] border-[5px]">
-                                <% } else { %>
-                                    <img src="../images/profilePlaceholder.jpg" alt="Team Member"
-                                        class="rounded-full w-20 h-20 mb-4 border-[#042940] border-[5px]">
-                                    <% } %>
-                                        <h3 class="text-lg text-center font-semibold text-gray-700">
-                                            <%= sortedOwners[i].name %>
-                                        </h3>
-                                        <p class="text-gray-700"> Programs : <%= sortedOwners[i].programs.length %>
-                                        </p>
+                            <img src="data:<%= sortedOwners[i].profilePic.mimetype %>;base64,<%= sortedOwners[i].profilePic.toString('base64') %>"
+                                alt="Team Member" class="rounded-full w-20 h-20 mb-4 border-[#042940] border-[5px]">
+
+                            <h3 class="text-lg text-center font-semibold text-gray-700">
+                                <%= sortedOwners[i].name %>
+                            </h3>
+                            <p class="text-gray-700"> Programs : <%= sortedOwners[i].programs.length %>
+                            </p>
                         </a>
                         <% } %>
                             <% } else { %>
@@ -183,18 +183,19 @@
         mobileMenu.classList.toggle('hidden');
     });
     document.addEventListener('click', (event) => {
-      const ripple = document.createElement('div');
-      ripple.classList.add('ripple');
-      ripple.style.left = `${event.clientX - 10}px`;
-      ripple.style.top = `${event.clientY - 10}px`;
-      document.querySelector(".body").appendChild(ripple);
+        const ripple = document.createElement('div');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${event.clientX - 10}px`;
+        ripple.style.top = `${event.clientY - 10}px`;
+        document.querySelector(".body").appendChild(ripple);
 
-      // Remove the ripple after animation
-      ripple.addEventListener('animationend', () => {
-        ripple.remove();
-      });
+        // Remove the ripple after animation
+        ripple.addEventListener('animationend', () => {
+            ripple.remove();
+        });
     });
 </script>
 
 <script src="../javaScripts/script.js"></script>
+
 </html>
